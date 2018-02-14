@@ -149,7 +149,7 @@ func (d *Decoder) decode(v reflect.Value, path string, parts []pathPart,
 				if d.zeroEmpty {
 					items = append(items, reflect.Zero(elemT))
 				}
-			} else if item := conv(value); item.IsValid() {
+			} else if item := conv(value); item.IsValid() && elemT.Kind() != reflect.String {
 				if isPtrElem {
 					ptr := reflect.New(elemT)
 					ptr.Elem().Set(item)
